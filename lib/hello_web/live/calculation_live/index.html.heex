@@ -1,0 +1,41 @@
+<.header>
+  Listing Calculations
+  <:actions>
+    <.link patch={~p"/calculations/new"}>
+      <.button>New Calculation</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table
+  id="calculations"
+  rows={@streams.calculations}
+  row_click={fn {_id, calculation} -> JS.navigate(~p"/calculations/#{calculation}") end}
+>
+  <:col :let={{_id, calculation}} label="Value"><%= calculation.value %></:col>
+  <:action :let={{_id, calculation}}>
+    <div class="sr-only">
+      <.link navigate={~p"/calculations/#{calculation}"}>Show</.link>
+    </div>
+    <.link patch={~p"/calculations/#{calculation}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={{id, calculation}}>
+    <.link
+      phx-click={JS.push("delete", value: %{id: calculation.id}) |> hide("##{id}")}
+      data-confirm="Are you sure?"
+    >
+      Delete
+    </.link>
+  </:action>
+</.table>
+
+<.modal :if={@live_action in [:new, :edit]} id="calculation-modal" show on_cancel={JS.patch(~p"/calculations")}>
+  <.live_component
+    module={HelloWeb.CalculationLive.FormComponent}
+    id={@calculation.id || :new}
+    title={@page_title}
+    action={@live_action}
+    calculation={@calculation}
+    patch={~p"/calculations"}
+  />
+</.modal>
