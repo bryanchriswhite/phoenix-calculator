@@ -1,18 +1,18 @@
 <.header>
-  Listing Calculations
-  <:actions>
+  Calculator
+  <!--<:actions>
     <.link patch={~p"/calculations/new"}>
       <.button>New Calculation</.button>
     </.link>
-  </:actions>
+  </:actions>-->
 </.header>
 
-<.table
+<!--<.table
   id="calculations"
   rows={@streams.calculations}
   row_click={fn {_id, calculation} -> JS.navigate(~p"/calculations/#{calculation}") end}
 >
-  <:col :let={{_id, calculation}} label="Value"><%= calculation.value %></:col>
+  <:col :let={{_id, calculation}} label="Value"><!%= calculation.value %></:col>
   <:action :let={{_id, calculation}}>
     <div class="sr-only">
       <.link navigate={~p"/calculations/#{calculation}"}>Show</.link>
@@ -27,15 +27,14 @@
       Delete
     </.link>
   </:action>
-</.table>
+</.table>-->
 
-<.modal :if={@live_action in [:new, :edit]} id="calculation-modal" show on_cancel={JS.patch(~p"/calculations")}>
+<!--<.modal :if={@live_action in [:new, :edit]} id="calculation-modal" show on_cancel={JS.patch(~p"/calculations")}>-->
   <.live_component
-    module={HelloWeb.CalculationLive.FormComponent}
-    id={@calculation.id || :new}
-    title={@page_title}
+    module={HelloWeb.CalculationLive.Calculator}
+    id={:calc}
     action={@live_action}
     calculation={@calculation}
     patch={~p"/calculations"}
   />
-</.modal>
+<!--</.modal>-->

@@ -77,6 +77,7 @@ defmodule HelloWeb.Router do
 
     delete "/users/log_out", UserSessionController, :delete
 
+    live "/calc", CalculationLive.Index, :index
     live_session :current_user,
       on_mount: [{HelloWeb.UserAuth, :mount_current_user}] do
       live "/users/confirm/:token", UserConfirmationLive, :edit

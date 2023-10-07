@@ -98,7 +98,8 @@ defmodule Hello.Calculator do
       %Ecto.Changeset{data: %Calculation{}}
 
   """
-  def change_calculation(%Calculation{} = calculation, attrs \\ %{}) do
-    Calculation.changeset(calculation, attrs)
+#  def change_calculation(%Calculation{} = calculation, attrs \\ %{}) do
+  def change_calculation(_ = calculation, attrs \\ %{}) do
+#    Calculation.changeset(calculation, attrs)
   end
 end
