@@ -99,7 +99,7 @@ defmodule Hello.Calculator do
 
   """
 #  def change_calculation(%Calculation{} = calculation, attrs \\ %{}) do
-  def change_calculation(_ = calculation, attrs \\ %{}) do
+  def change_calculation(_calculation, _attrs \\ %{}) do
 #    Calculation.changeset(calculation, attrs)
   end
 end
